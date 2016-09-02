@@ -6,7 +6,7 @@ $("#menuedit").hide();
 
 $("#blogadd").hide();
 $("#blogedit").hide();
-
+             
 
 //Menu
 $("#menubutton").on('click',function(){

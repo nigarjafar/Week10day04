@@ -15,31 +15,42 @@ class Database{
         $this->connect=mysqli_connect($this->host,$this->username,$this->password,$this->db_name);
     }
     
-    public function select($tablename, $id){
-        if($id=="*"){
-            $sql ="SELECT * FROM $tablename";
-        }
-        else{
-            $sql ="SELECT * FROM $tablename WHERE id=$id";
-        }
+    //Function names are in Alphabetical Order
+    
+    public function addBlogPost($tablename, $name, $text,$img, $author,$date ){
         
+        $sql ="INSERT INTO $tablename (heading, paragraph , img, author, date)  VALUES ('$name', '$text' , '$img','$author','$date')";
         $query=mysqli_query($this->connect, $sql);
         return $query;
     }
     
-     public function addMenu($tablename, $name, $href ){
+    public function addMenu($tablename, $name, $href ){
         
         $sql ="INSERT INTO $tablename (name, href)  VALUES ('$name', '$href')";
         $query=mysqli_query($this->connect, $sql);
         return $query;
     }
     
-    public function addBlogPost($tablename, $name, $text,$img, $author,$date ){
+     public function Click($tablename,$id, $click ){
         
-        $sql ="INSERT INTO $tablename (heading, text , img, author, date)  VALUES ('$name', '$text' , '$img','$author','$date')";
+        $sql ="UPDATE $tablename SET click='$click' WHERE id=$id";
         $query=mysqli_query($this->connect, $sql);
         return $query;
     }
+    
+     public function delete($tablename,$id){
+        
+        $sql ="DELETE FROM $tablename WHERE id = $id";
+        $query=mysqli_query($this->connect, $sql);
+        return $query;
+    }
+    
+     public function editBlogPost($tablename,$id,$heading, $text, $img,$author ){
+        
+        $sql ="UPDATE $tablename SET heading='$heading', text='$text', img='$img', author='$author' WHERE id=$id";
+        $query=mysqli_query($this->connect, $sql);
+        return $query;
+    } 
     
     public function editMenu($tablename,$id, $name, $href ){
         
@@ -48,24 +59,30 @@ class Database{
         return $query;
     } 
     
-    public function editBlogPost($tablename,$id,$heading, $text, $img,$author ){
+   
+     public function orderInReverse($tablename, $col, $limit){
+        $sql ="select * from $tablename order by $col desc limit $limit";
         
-        $sql ="UPDATE $tablename SET heading='$heading', text='$text', img='$img', author='$author' WHERE id=$id";
-        $query=mysqli_query($this->connect, $sql);
-        return $query;
-    } 
-    
-    public function delete($tablename,$id){
-        
-        $sql ="DELETE FROM $tablename WHERE id = $id";
         $query=mysqli_query($this->connect, $sql);
         return $query;
     }
     
-    public function Search($tablename,$date){
-        $this->tablename=$tablename;
+    
+    public function Search($tablename,$col1,$word){
         
-        $sql ="INSERT INTO $this->tablename (name, text, newsdate)  VALUES ('$name', '$text', '$date' )";
+        $sql ="SELECT * FROM $tablename WHERE $col1 LIKE '%".$word."%'";
+        $query=mysqli_query($this->connect, $sql);
+        return $query;
+    }
+    
+     public function select($tablename, $id){
+        if($id=="*"){
+            $sql ="SELECT * FROM $tablename";
+        }
+        else{
+            $sql ="SELECT * FROM $tablename WHERE id=$id";
+        }
+        
         $query=mysqli_query($this->connect, $sql);
         return $query;
     }

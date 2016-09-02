@@ -34,10 +34,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="header_bottom">
 		<div class="wrap">
 			<div class="menu">
-
-                
-                    
-                
 			    <ul>
                     
                   <?php
@@ -48,8 +44,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    </ul>
 			</div>
 			<div class="search_box">
-			    <form>
-			    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+			    <form action="search.php" method="post">
+			    <input type="text"  name="searchfor" placeholder="Search">
+                <input type="submit" value="" name="search">
 			    </form>
 			</div>
 			<div class="clear"></div>
@@ -60,6 +57,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="main">
 		<div class="content">
             <?php
+                
                 $query=$blog->select("post","*");
                 while ($row=mysqli_fetch_assoc($query)){?>
 			<div class="box1">
@@ -69,36 +67,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    <img src="<?=$row["img"]?>" style="width:280px" alt="" />
 				</div>   
 				<div class="data">
-				    <p><?=$row["text"]?></p>
+				    <p><?=$row["paragraph"]?></p>
 				    <a href="single.php?id=<?=$row["id"]?>">Continue reading >>></a>
 				</div>
 			<div class="clear"></div>
 			</div>
             <?php } ?>
-		<!--<div class="box1">
-		    <h2><a href="single.html">Making it look like readable English. Many desktop publishing packages and web page</a></h2>
-		    <span>By Fred G.Meyer- 10 hours ago</span>
-			<div class="box1_img">
-			    <img src="images/img2.jpg" alt="" />
-			</div>
-			<div class="data">
-			    <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editorsLorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors</p>
-			    <a href="single.html">Continue reading >>></a>
-			</div>
-		<div class="clear"></div>
-		</div>
-		<div class="box1">
-		    <h2><a href="single.html">Making it look like readable English. Many desktop publishing packages and web page</a></h2>
-		    <span>By R.J Cliton - 1 day ago</span>
-			<div class="box1_img">
-			    <img src="images/img3.jpg" alt="" />
-			</div>
-			<div class="data">
-			    <p>Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editorsLorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors</p>
-			    <a href="single.html">Continue reading >>></a>
-			</div>
-		<div class="clear"></div>
-		</div>-->
 		<div class="page_links">
 			<div class="next_button">
 				 <a href="#">Next</a>
@@ -125,12 +99,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    <h2>Recent Feeds</h2>
 			<div class="list1">
 				 <ul>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-					<li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
+                     <?php 
+                     $query=$blog->orderInReverse("post","id","6");
+                     while ($row=mysqli_fetch_assoc($query)){?>
+                     <li><a href="single.php?id=<?=$row["id"]?>" >
+                         <?= substr($row['heading'], 0, 40)?>...
+                         </a></li>
+                    <?php } ?>
 				</ul>
 			</div>
 		</div>
@@ -138,13 +113,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    <h2>Most Viewed</h2>
 		<div class="list2">
 		    <ul>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			  <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			</ul>
+                <?php 
+                $query=$blog->orderInReverse("post","click","6");
+                while ($row=mysqli_fetch_assoc($query)){?>
+                <li><a href="single.php?id=<?=$row["id"]?>" >
+                    <?= substr($row['heading'], 0, 40)?>...
+                </a></li>
+                <?php } ?>
+            </ul>
 		</div>
 	</div>
 	</div>

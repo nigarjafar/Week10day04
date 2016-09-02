@@ -52,8 +52,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 </div>
 <?php
+
 $query=$blog->select("post" , $_GET["id"]);
+
 $row=mysqli_fetch_assoc($query);
+$blog->Click("post",$row['id'],++$row['click']);
 ?>
 <div class="wrap">
 	<div class="main">
@@ -65,36 +68,38 @@ $row=mysqli_fetch_assoc($query);
 				   <img src="<?=$row["img"]?>" alt="" />
 				</div>   
 				<div class="data_desc">
-				    <p><?=$row["text"]?></p>
+				    <p><?=$row["paragraph"]?></p>
 				   
 				</div>
 			</div> 
 		</div> 
 	<div class="sidebar">
 		<div class="side_top">
-			<h2>Recent Feeds</h2>
+		    <h2>Recent Feeds</h2>
 			<div class="list1">
-			   <ul>
-				 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-				 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-				 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-				 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-				 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			     <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			   </ul>
+				 <ul>
+                     <?php 
+                     $query=$blog->orderInReverse("post","id","6");
+                     while ($row=mysqli_fetch_assoc($query)){?>
+                     <li><a href="single.php?id=<?=$row["id"]?>" >
+                         <?= substr($row['heading'], 0, 40)?>...
+                         </a></li>
+                    <?php } ?>
+				</ul>
 			</div>
 		</div>
 	<div class="side_bottom">
-		<h2>Most Viewed</h2>
+	    <h2>Most Viewed</h2>
 		<div class="list2">
-		   <ul>
-			 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-			 <li><a href="#">Lorem ipsum dolor desktop publishing</a></li>
-		   </ul>
+		    <ul>
+                <?php 
+                $query=$blog->orderInReverse("post","click","6");
+                while ($row=mysqli_fetch_assoc($query)){?>
+                <li><a href="single.php?id=<?=$row["id"]?>" >
+                    <?= substr($row['heading'], 0, 40)?>...
+                </a></li>
+                <?php } ?>
+            </ul>
 		</div>
 	</div>
 	</div>

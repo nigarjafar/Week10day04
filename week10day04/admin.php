@@ -93,7 +93,7 @@ include "db.php";?>
                         while ($row=mysqli_fetch_assoc($query)){?>
                         <tr>
                             <td><?=$row['heading']?></td>
-                            <td><?=$row['text']?></td>
+                            <td><?=$row['paragraph']?></td>
                             <td><?=$row['author']?></td>
                             <td><?=$row['img']?></td>
                             <td><a class="btn btn-success" href="blogpost.php?id=<?=$row['id']?>">Edit/Delete</a></td>

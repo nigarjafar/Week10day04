@@ -28,7 +28,7 @@ if($_SESSION["login"]){ ?>
                     <input type="text" class="form-control" name="heading"  value="<?=$row['heading']?>" placeholder="Add heading" >
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="text"  value="<?=$row['text']?>" placeholder="Add text" >
+                    <input type="text" class="form-control" name="text"  value="<?=$row['paragraph']?>" placeholder="Add text" >
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="author"  value="<?=$row['author']?>" placeholder="Add author" >

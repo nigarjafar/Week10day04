@@ -9,7 +9,7 @@ if($_SESSION["login"]){
         if(!empty($_POST["name"])&&!empty($_POST["href"])){
         $blog->addMenu("menu",$_POST['name'],$_POST["href"]);
             
-        if(isset($_POST["new"]){
+        if(isset($_POST["new"])){  
         $page = $_POST['href'];
         $pageCreate = fopen($page, 'x+') or die("can't open file");
         fclose($pageCreate);}
