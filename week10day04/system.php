@@ -23,11 +23,13 @@ if($_SESSION["login"]){
 }
     
     //Editing menu item
-     if(isset($_POST["editmenu"])){
+     if( isset($_POST["editmenu"])&& !empty($_POST["name"])&& !empty($_POST['href'])){
         $blog->editMenu("menu",$_POST['id'],$_POST['name'],$_POST["href"]);
         
        header("Location:admin.php");
-    }
+    }else{
+         echo "<h3>FILL IN ALL SECTIONS</h3>";
+     }
     
     //Deleting menu item
      if(isset($_POST["deletemenu"])){
@@ -88,7 +90,8 @@ if($_SESSION["login"]){
         
        header("Location:admin.php");
     }
-    
+   
+    echo "<a href='admin.php' class='btn-btn-default'>Admin Panel</a>" ;
     
 }
 else{ header("Location:login.php");}
