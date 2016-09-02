@@ -71,9 +71,12 @@ if($_SESSION["login"]){
         $fileType=pathinfo($_FILES["img"]["name"], PATHINFO_EXTENSION);
         $targetFile="images/".date('dmYGis').".".$fileType;
         
+        move_uploaded_file($fileSource,$targetFile);
+            
         $blog->editBlogPost("post",$_POST["id"],$_POST["heading"],$_POST['text'],$targetFile,$_POST["author"]);
         
-       header("Location:admin.php");
+        
+        header("Location:admin.php");
         }
         else{
             echo "<h3>FIll IN ALL SECTIONS</h3>";

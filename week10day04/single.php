@@ -43,8 +43,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    </ul>
 			</div>
 			<div class="search_box">
-			    <form>
-			    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+			    <form action="search.php" method="post">
+			    <input type="text"  name="searchfor" placeholder="Search">
+                <input type="submit" value="" name="search">
 			    </form>
 			</div>
 		<div class="clear"></div>

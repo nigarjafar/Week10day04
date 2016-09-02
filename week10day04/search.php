@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="header_top">
 		<div class="wrap">
 			<div class="logo">
-			     <a href="index.html"><img src="images/logo.png" alt="" /></a>
+			     <a href="index.php"><img src="images/logo.png" alt="" /></a>
 			</div>
 			<div class="login_button">
 			    <ul>
@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="content">
             <?php
                 if(isset($_POST["search"])&&!empty($_POST["searchfor"])){
-                $query=$blog->search("post","paragraph",$_POST["searchfor"]);
+                $query=$blog->search("post","paragraph","author","heading",$_POST["searchfor"]);
                 while ($row=mysqli_fetch_assoc($query)){?>
 			<div class="box1">
 			    <h2><a href="single.php?id=<?=$row["id"]?>"><?=$row["heading"]?></a></h2>
@@ -67,7 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				    <img src="<?=$row["img"]?>" style="width:280px" alt="" />
 				</div>   
 				<div class="data">
-				    <p><?=$row["paragraph"]?></p>
+				    <p><?=substr($row['paragraph'], 0, 300)?></p>
 				    <a href="single.php?id=<?=$row["id"]?>">Continue reading >>></a>
 				</div>
 			<div class="clear"></div>

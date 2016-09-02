@@ -47,7 +47,7 @@ class Database{
     
      public function editBlogPost($tablename,$id,$heading, $text, $img,$author ){
         
-        $sql ="UPDATE $tablename SET heading='$heading', text='$text', img='$img', author='$author' WHERE id=$id";
+        $sql ="UPDATE $tablename SET heading='$heading', paragraph='$text', img='$img', author='$author' WHERE id=$id";
         $query=mysqli_query($this->connect, $sql);
         return $query;
     } 
@@ -68,9 +68,8 @@ class Database{
     }
     
     
-    public function Search($tablename,$col1,$word){
-        
-        $sql ="SELECT * FROM $tablename WHERE $col1 LIKE '%".$word."%'";
+    public function Search($tablename,$col1,$col2,$col3,$word){
+        $sql ="SELECT * FROM $tablename WHERE $col1 LIKE '%".$word."%' OR $col2 LIKE '%".$word."%' OR $col1 LIKE '%".$word."%'";
         $query=mysqli_query($this->connect, $sql);
         return $query;
     }

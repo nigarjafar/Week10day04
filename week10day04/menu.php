@@ -46,5 +46,5 @@ if($_SESSION["login"]){ ?>
 </html>
 <?php
 }
-else{ header("Location:admin.php");}
+else{ header("Location:login.php");}
 ?>

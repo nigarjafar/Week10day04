@@ -13,6 +13,8 @@ include "db.php";?>
         form,table{margin: 10px;}
         .active{background-color:#adadad;}
     </style>
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
     <body>
         <h1 class="text-center">Admin Panel</h1>
          
@@ -63,10 +65,13 @@ include "db.php";?>
         <div id="blogsetting">
             <button id="addblogbutton" class="btn btn-default col-md-10 col-md-offset-1">Add new </button>
                 <div id="blogadd">
-                      <form class="form-horizontal col-md-10 col-md-offset-1" action="system.php" enctype="multipart/form-data" method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="text" placeholder="Add text" >
-                            </div>
+                    <form class="form-horizontal col-md-10 col-md-offset-1" action="system.php" enctype="multipart/form-data" method="post">
+                        <div class="form-group"></div>
+                            <textarea name="text" id="editor1" cols="80"></textarea>
+                            <script>
+                                CKEDITOR.replace( 'editor1' );
+                            </script>
+
                             <div class="form-group">
                                 <input type="text" class="form-control" name="author" placeholder="Add author" >
                             </div>
@@ -110,7 +115,6 @@ include "db.php";?>
         <form action="logout.php" method="post">
             <input style="margin-top:20px" type="submit" value="Logout" class="btn btn-danger col-md-4 col-md-offset-4" name="logout">
         </form>
-        <script src="js/jquery-3.1.0.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
